@@ -1,0 +1,7 @@
+.venv/
+hypothesis/
+DATA/*/*_filtered.csv
+DATA/*/Gesture_*.csv
+.env
+todo.md
+ANALYSIS_AND_IMPROVEMENT_PLAN.md

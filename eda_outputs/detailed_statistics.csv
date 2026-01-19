@@ -1,0 +1,17 @@
+Metric,Value
+Total Observations,205.0
+Participants,41.0
+Gestures,5.0
+Segments,60.0
+Global Min,0.0
+Global Max,17.0
+Global Mean,3.847
+Global Std,2.916
+Missing Values,2.0
+Outliers (>10),1.0
+Early Phase Mean,0.988
+Mid Phase Mean,4.356
+Late Phase Mean,5.393
+Fatigue Increase,4.404
+Adjacent Correlation,0.96
+Early-Late Correlation,0.391
