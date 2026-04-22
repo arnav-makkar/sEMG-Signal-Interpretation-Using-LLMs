@@ -1,0 +1,103 @@
+{
+  "overall_activation": "high",
+  "dominant_sensors": [
+    "S4"
+  ],
+  "weakest_sensors": [
+    "S6"
+  ],
+  "dominant_weakest_ratio": 5.66,
+  "temporal_profile": "Ramp-up",
+  "activation_consistency": "consistent",
+  "per_sensor": [
+    {
+      "sensor": "S1",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.142,
+      "notable": null
+    },
+    {
+      "sensor": "S2",
+      "activation_level": "high",
+      "temporal_profile": "Sustained",
+      "cv": 0.388,
+      "notable": "Moderate consistency"
+    },
+    {
+      "sensor": "S3",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.181,
+      "notable": "High recruitment"
+    },
+    {
+      "sensor": "S4",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.139,
+      "notable": "Primary driver"
+    },
+    {
+      "sensor": "S5",
+      "activation_level": "high",
+      "temporal_profile": "Sustained",
+      "cv": 0.239,
+      "notable": "Moderate consistency"
+    },
+    {
+      "sensor": "S6",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.127,
+      "notable": null
+    },
+    {
+      "sensor": "S7",
+      "activation_level": "moderate",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.17,
+      "notable": null
+    },
+    {
+      "sensor": "S8",
+      "activation_level": "high",
+      "temporal_profile": "Ramp-down",
+      "cv": 0.246,
+      "notable": "Late phase amplitude drop"
+    }
+  ],
+  "cross_channel": {
+    "concentration_index": 0.1851,
+    "pattern_stability": 0.9942,
+    "inter_channel_corr": 0.0954,
+    "co_contraction_likely": false,
+    "spatial_compensation": false
+  },
+  "onset_assessment": null,
+  "duty_cycle_assessment": null,
+  "motor_unit_recruitment_signs": {
+    "detected": true,
+    "sensors_affected": [
+      "S3",
+      "S4"
+    ],
+    "evidence": "High WAMP values (S3: 2943.8, S4: 2206.2) indicate significant motor unit recruitment in flexor group."
+  },
+  "gesture_pattern_notes": "Flexor group (S1-S4) shows significantly higher activation (Very High) compared to extensor group (S5-S8), consistent with palmar flexion dominance.",
+  "normalization_note": "Features in absolute mV; cross-subject comparisons unreliable per A13/P6.",
+  "confidence": 0.95,
+  "flags": [
+    "High flexor-extensor imbalance (2.23x)",
+    "S3/S4 very high activation levels",
+    "S8 amplitude decline in late phase"
+  ],
+  "clinical_notes": "Sustained isometric contraction with clear flexor dominance. S3 and S4 demonstrate high recruitment intensity. S8 shows a late-phase amplitude reduction, potentially indicating localized fatigue.",
+  "_meta": {
+    "participant": "P3",
+    "model": "gemini-3.1-flash-lite-preview",
+    "prompt_tokens": 3714,
+    "completion_tokens": 904,
+    "parse_success": true
+  }
+}

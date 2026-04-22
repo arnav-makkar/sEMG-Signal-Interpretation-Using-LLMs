@@ -1,0 +1,20 @@
+# Core scientific stack
+numpy>=1.26
+pandas>=2.1
+scipy>=1.11
+matplotlib>=3.8
+
+# LLM backends
+google-genai>=0.3.0
+groq>=0.11.0
+
+# RAG: PDF parsing + embeddings + vector store
+pypdf>=4.0
+sentence-transformers>=2.7
+chromadb>=0.4.22
+
+# PDF report generation
+reportlab>=4.0
+
+# Markdown tables in activation_report.md
+tabulate>=0.9

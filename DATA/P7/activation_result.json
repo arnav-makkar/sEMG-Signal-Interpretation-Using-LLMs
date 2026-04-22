@@ -1,0 +1,102 @@
+{
+  "overall_activation": "very_high",
+  "dominant_sensors": [
+    "S3"
+  ],
+  "weakest_sensors": [
+    "S8"
+  ],
+  "dominant_weakest_ratio": 2.81,
+  "temporal_profile": "Sustained",
+  "activation_consistency": "consistent",
+  "per_sensor": [
+    {
+      "sensor": "S1",
+      "activation_level": "very_high",
+      "temporal_profile": "Intermittent",
+      "cv": 1.138,
+      "notable": "High CV indicates instability in intermittent activation"
+    },
+    {
+      "sensor": "S2",
+      "activation_level": "very_high",
+      "temporal_profile": "Sustained",
+      "cv": 0.091,
+      "notable": null
+    },
+    {
+      "sensor": "S3",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.1,
+      "notable": "Highest RMS; primary driver"
+    },
+    {
+      "sensor": "S4",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.111,
+      "notable": null
+    },
+    {
+      "sensor": "S5",
+      "activation_level": "high",
+      "temporal_profile": "Sustained",
+      "cv": 0.079,
+      "notable": null
+    },
+    {
+      "sensor": "S6",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.173,
+      "notable": null
+    },
+    {
+      "sensor": "S7",
+      "activation_level": "high",
+      "temporal_profile": "Sustained",
+      "cv": 0.157,
+      "notable": null
+    },
+    {
+      "sensor": "S8",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.267,
+      "notable": "Highest CV in extensor group"
+    }
+  ],
+  "cross_channel": {
+    "concentration_index": 0.1461,
+    "pattern_stability": 0.9909,
+    "inter_channel_corr": 0.0885,
+    "co_contraction_likely": true,
+    "spatial_compensation": false
+  },
+  "onset_assessment": null,
+  "duty_cycle_assessment": null,
+  "motor_unit_recruitment_signs": {
+    "detected": true,
+    "sensors_affected": [
+      "S3"
+    ],
+    "evidence": "S3 exhibits highest WAMP (423.6), indicating significant motor unit recruitment during the sustained contraction."
+  },
+  "gesture_pattern_notes": "Flexor group (S1-S4) shows higher activation levels (Very High) compared to extensor group (S5-S8, High/Moderate). Flexor-extensor balance of 1.90 confirms flexor dominance.",
+  "normalization_note": "Features in absolute mV; cross-subject comparisons unreliable per A13/P6.",
+  "confidence": 0.9,
+  "flags": [
+    "High flexor-extensor co-contraction ratio",
+    "S1 intermittent activation instability",
+    "Flexor dominance"
+  ],
+  "clinical_notes": "Sustained isometric contraction with clear flexor dominance. High co-contraction ratio (0.5376) suggests significant antagonist activity, typical for power grip. S3 is the primary active site with high recruitment indicators.",
+  "_meta": {
+    "participant": "P7",
+    "model": "gemini-3.1-flash-lite-preview",
+    "prompt_tokens": 3646,
+    "completion_tokens": 905,
+    "parse_success": true
+  }
+}

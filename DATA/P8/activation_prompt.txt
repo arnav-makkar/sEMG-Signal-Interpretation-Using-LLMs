@@ -1,0 +1,139 @@
+SYSTEM:
+You are an expert clinical EMG analysis assistant. You interpret extracted EMG signal features to provide structured clinical assessments for physicians.
+Base analysis on provided features and rules only. Never fabricate data.
+Do not invent new thresholds. If data is insufficient, say so and lower confidence.
+Do not diagnose disease. Role: summarization, explanation, flagging issues.
+Return STRICT JSON matching the output schema. No markdown.
+
+<CLINICAL_RULES>
+--- Physiological Context ---
+[P1] EMG Range: Meaningful 10-500 Hz. <10 Hz = motion artifact. >500 Hz = noise.
+[P2] Motor Units: 100-1000 fibers each. Henneman size principle. Fast-twitch = higher freq EMG.
+[P3] Conduction Velocity: Normal 3-6 m/s. Fatigue reduces it, shifting spectrum lower.
+[P4] Typical Amplitude: 0-6 mV p-p. Forearm moderate grip: 0.1-1.0 mV RMS. <0.01 mV = not over muscle.
+[P5] Session Phases: 0-5 min warmup, 5-10 stable, 10-15 early fatigue, 15-20 pronounced. Impedance stabilizes ~10-15 min.
+[P6] Inter-Subject Variability: 3-5x amplitude variation. Within-subject trends far more reliable.
+[P7] Amplitude Caution: sEMG amplitude cannot infer absolute force, compare between muscles, or determine specific activation in isolation. Valid for relative changes within the same muscle/session/electrode setup.
+
+--- Workflow 4: Muscle Activation Rules ---
+[A1] Activation Level: RMS relative to session mean. Low: <30%. Moderate: 30-70%. High: 70-100%. Very High: >100%.
+[A2] Gesture Patterns: Flexion = S1-S4 (palmar). Extension = S5-S8. Deviations = placement error or compensation.
+[A3] Co-contraction: Agonist + antagonist RMS both >50% peak simultaneously. Normal for power grip; abnormal for fine motor.
+[A4] Consistency: CV of RMS. <20% consistent. 20-40% moderate. >40% difficulty maintaining gesture.
+[A5] Dominant Sensor: Highest average RMS. Report dominant-to-weakest ratio.
+[A6] Temporal Profile: Classify as Sustained, Ramp-up, Ramp-down, Intermittent, or Compensatory shift.
+[A7] Force Estimation: RMS has linear-to-quadratic relationship with force. Valid only for relative within-session comparisons.
+[A8] Motor Unit Recruitment: Higher WAMP/ZC = fast-twitch recruitment (increasing effort or fatigue).
+[A9] Onset Detection: Threshold = baseline mean + k*SD (k in [1,3]) with minimum duration 20-100 ms.
+[A10] Envelope Smoothing: Rectify + low-pass. Use <=25 ms for timing accuracy; up to 250 ms for amplitude trends.
+[A11] False Onset Guard: Require consecutive windows above threshold. Single-window crossings = noise spikes.
+[A12] Duty Cycle: % time above activation threshold per sensor. Sustained vs intermittent classification.
+[A13] Normalization: Report as %MVC or %baseline. Without normalization, cross-session/subject comparisons are unreliable.
+</CLINICAL_RULES>
+
+<RESEARCH_CONTEXT>
+[Interpreting Signal Amplitudes in Surface EMG Studies in Sport and Rehabilitation Sciences — Full Text]
+exercise selection during rehabilitation. Open Access J. Sports Med. 6, 209–217. doi: 10.2147/OAJSM.S79189 van Bolhuis, B. M., Medendorp, W. P., and Gielen, C. C. (1997). Mot or unit ﬁring behavior in human arm ﬂexor muscles during sinusoidal isometric contractions and movements. Exp. Brain Res. 117, 120–130. doi: 10.1007/s0022100 50205 Vera-Garcia, F. J., Moreside, J. M., and McGill, S. M. (2010). MVC techniques to normalize trunk muscle EMG in healthy women. J. Electromyogr. Kinesiol. 20, 10–16. doi: 10.1016/j.jelekin.2009.03.010 Vieira, T. M., Botter, A., Muceli, S., and Farina, D. (2017). Spec iﬁcity of surface EMG recordings for gastrocnemius during upright standing. Sci. Rep. 7:13300. doi: 10.1038/s41598-017-13369-1 Vigotsky, A. D., Harper, E. N., Ryan, D. R., and Contreras, B. (201 
+
+[Interpreting Signal Amplitudes in Surface EMG Studies in Sport and Rehabilitation Sciences — Full Text]
+( Figures 3B,C; Lloyd and Besier, 2003; Staudenmann et al., 2010 ). Because sEMG is not a direct measure of muscle activation, we suggest that authors avoid using the term “activation” when referring to sEMG amplitudes. Instead, authors should simply utilize the term “sEMG amplitude, ” “muscle excitation, ” or “myoelectric activity.” Moreover, we also propose that the term “muscle activity” is ambiguous and should be avoided, as muscles Frontiers in Physiology | www.frontiersin.org 4 January 2018 | Volume 8 | Article 985 Vigotsky et al. sEMG in Sport and Rehabilitation Sciences can provide large contributions to a movement without being excited. Force Production and Sharing sEMG is particularly attractive because its primary constitue nts, motor unit recruitment and rate coding, are also t
+
+[The ABC of EMG: A Practical Introduction to Kinesiological Electromyography — Full Text]
+of the neuromuscular activity pattern in normal and pathological walking (Fig. 71). One may question if the data reduction to “On/Off” activity bars properly reflects the neuromuscular coordination, since the threshold definition for muscle onset can be critical and invalid (“see chapter Threshold Definition by multiple SD”). Another type of investigation (Fig. 72) addresses muscular reflex loops, e.g. the muscle response of the lower leg muscles in unexpected pronation of the ankle joint evoked by controlled tilt platforms (“how long does the muscle need to counter-react the pronation?”). Within the analysis of lumbar segm ental stabilization timing characterist ics of the involved stabilizers (Fig. 73) are an important measure for correct or insufficient “Core Stabilization”. M. vastus m
+
+[The ABC of EMG: A Practical Introduction to Kinesiological Electromyography — Full Text]
+curves. Beside signal nature, the main reason is the coordinative interplay between muscle agonist, antagonists and synergi sts, which can be considered as continuous motor control/balancing process between all involved components. To describe the “typical” movement characteristics and neuromuscular input, investigators should consider not to analyze only one repetition but many of them (> 6 up to 30, depending on difficulty and fatigue factor) and average them to the “ensemble average” curve. The concept of time normalization It is impossible to precisely repeat the duration of a repetition in human locomotion, even if isokinetics machines (constant movement velocity controlled by machines) are used (Fig. 48). Any averaging of such repetitions requires a time normalized format. The most p
+
+</RESEARCH_CONTEXT>
+
+<SESSION_DATA>
+participant=P8 | gesture=Gesture_1 | duration=1204.3s | n_segments=60 | n_sensors=8 | session_mean_rms=0.011663mV
+sampling_rate=1259.3Hz | feature_source=raw_signal
+
+PER-SENSOR SUMMARY:
+Sensor | RMS(mV) | CV   | MNF(Hz) | MDF(Hz) | WAMP  | ZC     | WL     | Level     | Profile
+----------------------------------------------------------------------------------------------------
+  S1: rms=0.004912 cv=0.097 mnf=136.4 mdf=119.33 wamp=70.8 zc=5854.7 wl=68.89 level=Moderate profile=Ramp-up
+  S2: rms=0.014204 cv=0.115 mnf=113.0 mdf=99.35 wamp=2168.6 zc=5014.8 wl=150.72 level=VeryHigh profile=Ramp-up
+  S3: rms=0.031357 cv=0.101 mnf=116.8 mdf=107.25 wamp=6325.3 zc=4820.6 wl=296.87 level=VeryHigh profile=Sustained
+  S4: rms=0.014199 cv=0.145 mnf=129.1 mdf=117.44 wamp=2814.5 zc=5292.9 wl=174.28 level=VeryHigh profile=Ramp-up
+  S5: rms=0.013489 cv=0.206 mnf=118.8 mdf=106.82 wamp=2279.1 zc=5030.5 wl=154.28 level=VeryHigh profile=Ramp-up
+  S6: rms=0.006775 cv=0.102 mnf=115.4 mdf=97.56 wamp=405.7 zc=5627.3 wl=69.79 level=Moderate profile=Sustained
+  S7: rms=0.004346 cv=0.115 mnf=123.5 mdf=103.82 wamp=68.2 zc=5822.0 wl=52.33 level=Moderate profile=Sustained
+  S8: rms=0.004024 cv=0.070 mnf=136.8 mdf=117.97 wamp=30.5 zc=5994.5 wl=55.88 level=Moderate profile=Sustained
+
+PHASE AVERAGES (RMS mV, S1..S8):
+  early(0-400s):    [0.0044, 0.012628, 0.031726, 0.011932, 0.01135, 0.006518, 0.00425, 0.004181]
+  mid(400-800s):    [0.00515, 0.015169, 0.033326, 0.014849, 0.014159, 0.006909, 0.004351, 0.003987]
+  late(800-1200s):  [0.005185, 0.014816, 0.029021, 0.015816, 0.014958, 0.0069, 0.004436, 0.003906]
+
+ACTIVATION TIMING: NOT APPLICABLE
+  This is a sustained-contraction recording (participant actively gripping
+  from start of recording). Onset, offset, duty_cycle, and burst_count are
+  not meaningful and are omitted. Do NOT speculate about activation timing.
+
+CROSS-CHANNEL:
+  dominant=S3 weakest=S8 ratio=7.79x
+  concentration_index=0.1944 [0=diffuse,1=focal]
+  pattern_stability=0.9982 [0=changing,1=stable]
+  inter_channel_corr=0.2949 [>0.8=crosstalk_risk]
+  co_contraction_ratio=0.4439 [>0.5=both_groups_active]
+  flexor_extensor_balance=2.2765 [>1=flexor-dominant]
+  overall_profile=Ramp-up
+
+GESTURE_CONTEXT: S1-S4=palmar/flexor | S5-S8=dorsal/extensor
+</SESSION_DATA>
+
+TASK:
+Perform Workflow 4 — Muscle Activation Analysis.
+Assess: activation intensity (A1), spatial distribution (A2, A5), co-contraction (A3),
+consistency (A4), temporal profile (A6), motor unit recruitment indicators (A8),
+and cross-channel patterns. Apply rules A1-A13 and physiological context P1-P7.
+Use the research context to ground your clinical reasoning.
+Flag anomalies. Note where features are missing (null) and adjust confidence.
+
+IF the SESSION_DATA says "ACTIVATION TIMING: NOT APPLICABLE", then set
+"onset_assessment" and "duty_cycle_assessment" to null in the output.
+Do NOT invent onset times or duty cycles for sustained-contraction data.
+
+For motor_unit_recruitment_signs, cite specific sensor IDs with ACTUAL WAMP/ZC
+values that support the claim. WAMP is the primary indicator — higher WAMP
+means more MU recruitment. Do NOT confuse high MNF with high WAMP.
+
+OUTPUT (return ONLY valid JSON — no markdown, no explanation outside JSON):
+{
+  "overall_activation": "low|moderate|high|very_high",
+  "dominant_sensors": ["S4", "S6"],
+  "weakest_sensors": ["S1", "S5"],
+  "dominant_weakest_ratio": 3.75,
+  "temporal_profile": "Sustained|Ramp-up|Ramp-down|Intermittent|Compensatory",
+  "activation_consistency": "consistent|moderate|inconsistent",
+  "per_sensor": [
+    {
+      "sensor": "S1",
+      "activation_level": "low|moderate|high|very_high",
+      "temporal_profile": "Sustained|Ramp-up|Ramp-down|Intermittent",
+      "cv": 0.15,
+      "notable": "string or null"
+    }
+  ],
+  "cross_channel": {
+    "concentration_index": 0.18,
+    "pattern_stability": 0.85,
+    "inter_channel_corr": 0.45,
+    "co_contraction_likely": true,
+    "spatial_compensation": false
+  },
+  "onset_assessment": null_or_object,
+  "duty_cycle_assessment": null_or_object,
+  "motor_unit_recruitment_signs": {
+    "detected": true,
+    "sensors_affected": ["S4"],
+    "evidence": "string"
+  },
+  "gesture_pattern_notes": "description of S1-S4 vs S5-S8 activation balance",
+  "normalization_note": "Features in absolute mV; cross-subject comparisons unreliable per A13/P6.",
+  "confidence": 0.85,
+  "flags": ["list of notable findings"],
+  "clinical_notes": "brief clinical summary"
+}

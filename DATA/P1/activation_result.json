@@ -1,0 +1,102 @@
+{
+  "overall_activation": "high",
+  "dominant_sensors": [
+    "S4"
+  ],
+  "weakest_sensors": [
+    "S7"
+  ],
+  "dominant_weakest_ratio": 7.27,
+  "temporal_profile": "Ramp-down",
+  "activation_consistency": "consistent",
+  "per_sensor": [
+    {
+      "sensor": "S1",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.17,
+      "notable": null
+    },
+    {
+      "sensor": "S2",
+      "activation_level": "high",
+      "temporal_profile": "Sustained",
+      "cv": 0.067,
+      "notable": null
+    },
+    {
+      "sensor": "S3",
+      "activation_level": "very_high",
+      "temporal_profile": "Sustained",
+      "cv": 0.071,
+      "notable": null
+    },
+    {
+      "sensor": "S4",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-down",
+      "cv": 0.134,
+      "notable": "Primary driver, significant amplitude decay"
+    },
+    {
+      "sensor": "S5",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.129,
+      "notable": null
+    },
+    {
+      "sensor": "S6",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.149,
+      "notable": null
+    },
+    {
+      "sensor": "S7",
+      "activation_level": "moderate",
+      "temporal_profile": "Ramp-down",
+      "cv": 0.144,
+      "notable": null
+    },
+    {
+      "sensor": "S8",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.219,
+      "notable": "Borderline consistency"
+    }
+  ],
+  "cross_channel": {
+    "concentration_index": 0.2006,
+    "pattern_stability": 0.9983,
+    "inter_channel_corr": 0.3785,
+    "co_contraction_likely": false,
+    "spatial_compensation": false
+  },
+  "onset_assessment": null,
+  "duty_cycle_assessment": null,
+  "motor_unit_recruitment_signs": {
+    "detected": true,
+    "sensors_affected": [
+      "S4",
+      "S3"
+    ],
+    "evidence": "High WAMP values in S4 (4176.3) and S3 (2127.5) indicate significant motor unit recruitment in the flexor group."
+  },
+  "gesture_pattern_notes": "Strong flexor dominance (S1-S4) compared to extensor group (S5-S8) with a flexor-extensor balance ratio of 2.73.",
+  "normalization_note": "Features in absolute mV; cross-subject comparisons unreliable per A13/P6.",
+  "confidence": 0.95,
+  "flags": [
+    "Ramp-down profile in S4 and S7",
+    "High flexor-extensor imbalance"
+  ],
+  "clinical_notes": "Sustained contraction shows high flexor activation, particularly in S4. The ramp-down profile in S4 suggests potential fatigue or loss of force maintenance over the 20-minute session. Co-contraction ratio is below the 0.5 threshold, indicating minimal antagonistic interference.",
+  "_meta": {
+    "participant": "P1",
+    "model": "gemini-3.1-flash-lite-preview",
+    "prompt_tokens": 3634,
+    "completion_tokens": 811,
+    "parse_success": true
+  }
+}

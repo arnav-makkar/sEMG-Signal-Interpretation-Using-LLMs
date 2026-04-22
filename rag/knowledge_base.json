@@ -1,0 +1,159 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "description": "Research paper knowledge chunks for EMG signal interpretation RAG system",
+    "source": "IP (1).pdf — Reference Sources & Bibliography"
+  },
+  "chunks": [
+    {
+      "id": "deLuca1997_fatigue_spectra",
+      "paper": "De Luca, C.J. (1997). Surface EMG in biomechanics. J. Applied Biomechanics, 13(2), 135-163.",
+      "tags": ["fatigue", "spectral", "MDF", "MNF", "frequency"],
+      "text": "During sustained isometric contractions, muscle fatigue causes a compression of the EMG power spectrum toward lower frequencies. The median frequency (MDF) and mean frequency (MNF) both decrease monotonically with fatigue. MDF is preferred for its robustness to noise. A 10-20% decline in MDF from baseline indicates moderate fatigue; >20% indicates severe fatigue. This spectral shift is caused by reduced motor nerve conduction velocity and increased synchronization of motor unit discharge rates."
+    },
+    {
+      "id": "deLuca1997_electrode_placement",
+      "paper": "De Luca, C.J. (1997). Surface EMG in biomechanics. J. Applied Biomechanics, 13(2), 135-163.",
+      "tags": ["electrode", "placement", "amplitude", "quality"],
+      "text": "Electrode placement relative to the innervation zone and muscle fiber orientation critically affects signal amplitude and spectral content. Electrodes placed over the innervation zone show attenuated high-frequency content and phase cancellation. The interelectrode distance (IED) should match the muscle fiber length (typically 1-2 cm). Misplacement causes amplitude underestimation and spectral distortion, which may mimic fatigue."
+    },
+    {
+      "id": "phinyomark2012_feature_selection",
+      "paper": "Phinyomark et al. (2012). Feature reduction and selection for EMG signal classification. Expert Systems with Applications, 39(8), 7420-7431.",
+      "tags": ["features", "classification", "RMS", "MAV", "ZC", "WAMP", "time-domain"],
+      "text": "Among time-domain EMG features, RMS and MAV show the highest discriminative power for gesture classification. Zero-crossing rate (ZC) and slope sign changes (SSC) capture frequency-related properties without FFT computation. Waveform length (WL) correlates with signal complexity and muscular effort. The recommended compact feature set for real-time classification is: RMS, MAV, ZC, SSC, and WL. Higher WAMP (Willison amplitude) indicates fast-twitch motor unit recruitment."
+    },
+    {
+      "id": "phinyomark2012_MDF_fatigue",
+      "paper": "Phinyomark et al. (2012). Mean and median frequencies of EMG signal. IntechOpen.",
+      "tags": ["fatigue", "MDF", "MNF", "frequency", "spectral"],
+      "text": "MNF and MDF are the gold-standard fatigue indicators in the frequency domain. MNF (mean frequency) is the weighted mean of the power spectrum. MDF (median frequency) divides the spectrum into two equal power halves and is more robust to noise. Both should decline together during real fatigue. MNF declining without MDF, or vice versa, suggests noise or artifact rather than physiological fatigue. Expected decline rate: -0.1 to -0.5 Hz/min for sustained isometric contractions."
+    },
+    {
+      "id": "hodges1996_onset_detection",
+      "paper": "Hodges, P.W. & Bui, B.H. (1996). A comparison of computer-based methods for the determination of onset of muscle contraction using electromyography. Electroencephalography and Clinical Neurophysiology, 101(6), 511-519.",
+      "tags": ["onset", "offset", "activation", "threshold", "detection"],
+      "text": "EMG onset is defined as the point where the signal exceeds a threshold of baseline mean + k*SD, where k is typically 1-3 depending on signal quality. The minimum burst duration should be 20-100 ms to exclude noise spikes. Rectification followed by low-pass filtering (time constant 10-25 ms) before thresholding improves onset accuracy. Require consecutive windows above threshold to guard against false positives from single noise spikes."
+    },
+    {
+      "id": "vigotsky2018_amplitude_limits",
+      "paper": "Vigotsky et al. (2018). Interpreting signal amplitudes in surface electromyography studies in sport and rehabilitation sciences. Frontiers in Physiology, 8, 985.",
+      "tags": ["amplitude", "normalization", "MVC", "force", "interpretation"],
+      "text": "sEMG amplitude cannot be used to infer absolute muscle force, compare activation between different muscles, or determine specific muscle activation in isolation. Valid uses are: relative changes within the same muscle during the same session with the same electrode setup. Normalization to MVC (maximum voluntary contraction) is required for cross-subject, cross-session, or cross-muscle comparisons. Reported as %MVC, amplitude becomes a proxy for relative effort level. Without normalization, a 3-5x inter-subject amplitude variation is expected."
+    },
+    {
+      "id": "basmajian1985_motor_units",
+      "paper": "Basmajian, J.V. & De Luca, C.J. (1985). Muscles Alive: Their Functions Revealed by Electromyography. 5th ed. Williams & Wilkins.",
+      "tags": ["motor_units", "recruitment", "activation", "physiology"],
+      "text": "Motor units contain 100-1000 muscle fibers each. Recruitment follows Henneman's size principle: slow-twitch (type I) fibers fire first at low forces; fast-twitch (type II) fibers are recruited at higher forces or during fatigue. Co-contraction (simultaneous agonist-antagonist activation) is normal for power grip and postural stability, but abnormal for fine motor control tasks. The spatial distribution of active motor units across the muscle belly determines the activation map seen by an array of surface electrodes."
+    },
+    {
+      "id": "konrad2005_abc_emg",
+      "paper": "Konrad, P. (2005). The ABC of EMG: A Practical Introduction to Kinesiological Electromyography. Noraxon Inc.",
+      "tags": ["quality", "amplitude", "baseline", "signal", "practical"],
+      "text": "Resting baseline noise RMS should be below 5 uV (0.005 mV) for a good-quality signal. Typical sEMG amplitude range: 0-6 mV peak-to-peak; forearm moderate grip produces 0.1-1.0 mV RMS. RMS below 0.01 mV during active contraction suggests the electrode is not over the target muscle. Band-pass filtering at 20-450 Hz removes most motion artifacts (<20 Hz) and high-frequency noise (>450 Hz). Signal quality degrades progressively over 20+ minute sessions due to electrode-skin impedance changes."
+    },
+    {
+      "id": "campbell2022_quality_analysis",
+      "paper": "Campbell et al. (2022). Surface EMG Signal Quality Analysis. IEEE Reviews in Biomedical Engineering.",
+      "tags": ["quality", "SNR", "artifact", "powerline", "clipping"],
+      "text": "SNR above 15 dB indicates a reliable EMG signal; 10-15 dB is marginal; below 10 dB is unreliable. Powerline interference (50/60 Hz) is detected when the power ratio at 50/60 Hz exceeds 10% of total band power — notch filtering is recommended. Kurtosis above 10 indicates spike artifacts from electrical transients. Clipping occurs when more than 0.5% of samples are at the amplifier rail; this requires gain reduction. Spectral entropy below 3.0 bits indicates single-frequency artifact dominance rather than broadband EMG."
+    },
+    {
+      "id": "chowdhury2013_signal_processing",
+      "paper": "Chowdhury et al. (2013). Surface EMG Signal Processing and Classification Techniques. Sensors, 13(9), 12431-12466.",
+      "tags": ["quality", "artifact", "crosstalk", "motion", "powerline", "processing"],
+      "text": "Common EMG artifacts: (1) powerline interference at 50/60 Hz — remove with notch filter; (2) motion artifact below 10 Hz — high-pass filter at 20 Hz; (3) crosstalk from adjacent muscles — detected when opposite-side sensors correlate >0.8 during unilateral gesture; (4) cable artifact — low-frequency ratio Power(1-10 Hz)/Power(20-450 Hz) above 0.30. Differential amplification with CMRR >80 dB minimizes common-mode noise. Electrode spacing should be 2-3 cm to reduce crosstalk."
+    },
+    {
+      "id": "merletti2004_signal_quality",
+      "paper": "Merletti, R. & Parker, P. (2004). Electromyography: Physiology, Engineering, and Non-Invasive Applications. IEEE Press / Wiley.",
+      "tags": ["quality", "frequency", "spectral", "ISEK", "standards"],
+      "text": "ISEK standards require band-pass filtering between 20-450 Hz (Butterworth 4th order minimum). The EMG power spectrum peaks between 50-150 Hz and is essentially zero above 500 Hz. Spectral entropy characterizes signal complexity: broadband EMG has high entropy; artifact-contaminated signals have low entropy. DC offset removal (subtract window mean) must be performed before any spectral analysis to prevent spectral leakage. Sampling rate must be at least twice the highest frequency of interest (minimum 1000 Hz for 500 Hz bandwidth)."
+    },
+    {
+      "id": "seniam_electrode_standards",
+      "paper": "SENIAM Guidelines. seniam.org. Electrode placement and recording standards.",
+      "tags": ["electrode", "placement", "standards", "skin_prep", "quality"],
+      "text": "SENIAM (Surface ElectroMyoGraphy for the Non-Invasive Assessment of Muscles) guidelines: skin preparation by shaving, abrading, and cleaning with alcohol reduces electrode-skin impedance below 10 kOhm. Electrode placement should be along the muscle fiber direction, at the midpoint between innervation zone and musculotendinous junction. Reference electrode should be on a bony landmark. For forearm muscles: wrist flexors at proximal one-third of forearm; wrist extensors on dorsal forearm."
+    },
+    {
+      "id": "sousa2023_impedance_variation",
+      "paper": "Sousa et al. (2023). Electrode-skin impedance variation during long-duration sEMG recordings. Sensors, 23(20), 8582.",
+      "tags": ["drift", "impedance", "electrode", "session", "baseline"],
+      "text": "During 20+ minute sEMG sessions, electrode-skin impedance follows a characteristic pattern: initial high impedance decreases in the first 5-10 minutes as skin hydration increases (perspiration). Impedance then stabilizes at 10-15 minutes. After 15-20 minutes, impedance may rise again due to gel drying. This pattern causes: RMS amplitude increases in first 10 min (not fatigue), then potential amplitude drift after 20 min. Use minutes 10-15 as the stable baseline reference for fatigue and drift analysis."
+    },
+    {
+      "id": "abdoli2012_perspiration",
+      "paper": "Abdoli-Eramaki et al. (2012). Perspiration effects on sEMG. Journal of Electromyography and Kinesiology, 22(6), 908-913.",
+      "tags": ["drift", "perspiration", "amplitude", "artifact"],
+      "text": "Perspiration during exercise changes electrode-skin contact impedance and alters sEMG amplitude. Perspiration typically causes a gradual amplitude increase in the first 5-10 minutes without changing spectral content (MDF/MNF unchanged). This is distinct from fatigue, which produces both amplitude changes and spectral compression. Rule D8: if RMS changes >20% but MDF changes <5%, sweat/impedance drift is more likely than fatigue."
+    },
+    {
+      "id": "yangetal2024_emgbench",
+      "paper": "Yang et al. (2024). EMGBench: Benchmarking Out-of-Distribution Generalization and Adaptation for Electromyography. NeurIPS 2024.",
+      "tags": ["dataset", "benchmark", "generalization", "fatigue", "gesture", "spatial"],
+      "text": "EMGBench provides standardized benchmarks for sEMG classification across subjects and sessions. Key findings: (1) fatigue causes progressive changes in fiber activation patterns and spatial distribution across sensor arrays; (2) perspiration and electrode displacement create distribution shifts distinct from gesture variation; (3) cross-subject generalization requires normalization; (4) activation map cosine similarity below 0.7 for 3+ consecutive segments indicates spatial pattern change, likely due to electrode shift or motor compensation."
+    },
+    {
+      "id": "al_mulla2011_fatigue_review",
+      "paper": "Al-Mulla et al. (2011). Non-invasive muscle fatigue detection. Sensors, 11(4), 3545-3594.",
+      "tags": ["fatigue", "entropy", "nonlinear", "detection"],
+      "text": "Sample Entropy (SampEn) decreases during fatigue due to increased motor unit synchronization, which reduces signal complexity and regularity. Normal SampEn range for sEMG: 0.5-2.5. A decline >15% from baseline indicates fatigue-related synchronization. Combined indicators are more reliable than any single metric: SampEn + MDF + RMS together provide stronger evidence than each alone. Nonlinear features are especially useful when spectral features show ambiguous trends."
+    },
+    {
+      "id": "karthick2016_timefreq",
+      "paper": "Karthick et al. (2016). Time-frequency analysis of surface EMG signals for fatigue assessment. Biomedical Signal Processing and Control.",
+      "tags": ["fatigue", "spectral", "time-frequency", "LH_ratio"],
+      "text": "The low-to-high frequency power ratio (L/H ratio: power 15-45 Hz / power 95-250 Hz) is a robust fatigue indicator. During fatigue, power shifts from high to low frequencies, increasing the L/H ratio. An increase >30% from baseline is consistent with fatigue. Time-frequency analysis (short-time Fourier transform or wavelet) reveals when spectral compression begins, enabling fatigue onset time estimation more precisely than windowed FFT."
+    },
+    {
+      "id": "gonzalez_izal2012_dynamic",
+      "paper": "Gonzalez-Izal et al. (2012). Electromyographic models and mechanical parameters in dynamic fatiguing contractions. Journal of Electromyography and Kinesiology.",
+      "tags": ["fatigue", "dynamic", "MDF", "slope", "rate"],
+      "text": "During sustained isometric contractions, MDF declines at a rate of -0.1 to -0.5 Hz/min depending on contraction intensity and muscle group. Higher contraction intensity (>50% MVC) produces faster spectral compression. MDF slopes outside this range (-0.1 to -0.5 Hz/min) may indicate artifact rather than physiological fatigue. For forearm muscles at moderate load, expect MDF to decline from approximately 100-120 Hz at baseline to 80-90 Hz after 20 minutes."
+    },
+    {
+      "id": "nazmi2016_classification",
+      "paper": "Nazmi et al. (2016). A Review of Classification Techniques of EMG Signals during Isotonic and Isometric Contractions. Sensors, 16(8), 1304.",
+      "tags": ["classification", "gesture", "features", "motor_units", "WAMP"],
+      "text": "Gesture classification accuracy is highest using a combination of time-domain features (RMS, MAV, ZC, WAMP) with linear discriminant analysis or SVM. For 8-sensor arrays, spatial features (activation map, inter-sensor correlation) significantly improve classification. WAMP (Willison amplitude) is particularly sensitive to changes in motor unit firing threshold and is useful for distinguishing effort levels. Feature extraction window of 200-300 ms provides the best accuracy-latency trade-off for real-time applications."
+    },
+    {
+      "id": "bhateja2019_baseline_correction",
+      "paper": "Bhateja et al. (2019). Baseline Correction of ECG/EMG Signals using Mathematical Morphology. Biomedical Signal Processing.",
+      "tags": ["drift", "baseline", "correction", "preprocessing"],
+      "text": "Baseline wander in EMG is caused by electrode movement, respiration, or sweat accumulation. Morphological filtering (opening operation with a flat structuring element) estimates the baseline without distorting the EMG signal. DC offset per segment (subtract segment mean) is the minimum correction. For drift slopes >0.001 mV/s, linear detrending per segment is recommended. Monotonic DC offset change >0.05 mV across 5+ consecutive segments indicates systematic electrode drift requiring correction or segment exclusion."
+    },
+    {
+      "id": "de_talhouet1996_motion_artifacts",
+      "paper": "De Talhouet & Webster (1996). The origin of skin-stretch-caused motion artifacts under electrodes. Physiological Measurement.",
+      "tags": ["artifact", "motion", "drift", "electrode", "displacement"],
+      "text": "Motion artifacts in sEMG originate from skin-electrode interface deformation during movement. They are characterized by low-frequency content (<10 Hz) and DC offset shifts. A sudden DC offset change >0.1 mV between consecutive segments indicates electrode displacement (e.g., from cable tug or body movement). Motion artifact can be distinguished from fatigue: motion artifact causes DC shift without concurrent spectral compression, while fatigue causes gradual MDF decline without sudden amplitude jumps."
+    },
+    {
+      "id": "tankisi2020_instrumentation",
+      "paper": "Tankisi et al. (2020). Standards of Instrumentation of EMG. Clinical Neurophysiology, 131(1), 243-258.",
+      "tags": ["standards", "instrumentation", "quality", "IFCN"],
+      "text": "IFCN consensus standards for EMG instrumentation: amplifier input impedance >10 MOhm; CMRR >80 dB; bandwidth 10-10,000 Hz (clinical) or 20-500 Hz (kinesiological); sampling rate minimum 2000 Hz (clinical). Electrode-skin impedance <10 kOhm for reliable recording. For surface EMG: electrode diameter 1 cm, interelectrode distance 1-2 cm. Signal should be stored raw (unfiltered) for post-hoc analysis, with filter parameters logged."
+    },
+    {
+      "id": "yoon2024_visual_prompting",
+      "paper": "Yoon et al. (2024). Visual prompting for biosignal classification using large language models.",
+      "tags": ["LLM", "biosignal", "classification", "prompting"],
+      "text": "LLMs can classify biosignals when given structured feature representations rather than raw waveforms. Token-efficient formats (compact JSON with short keys) outperform verbose descriptions by reducing prompt length without losing information. Few-shot examples with diverse patterns improve consistency of JSON output. For time-series physiological data, aggregated statistics (mean, slope, CV) per window are more informative to LLMs than individual sample values."
+    },
+    {
+      "id": "chan2024_medtsllm",
+      "paper": "Chan et al. (2024). MedTsLLM: Leveraging LLMs for Multivariate Medical Time Series Analysis. MLHC 2024.",
+      "tags": ["LLM", "medical", "time-series", "multivariate"],
+      "text": "LLMs applied to multivariate medical time series achieve best results when: (1) signals are segmented into interpretable windows; (2) domain-specific rules are provided in the system prompt; (3) outputs are constrained to structured JSON with defined schemas. Cross-channel relationships (correlation, ratio, spatial patterns) are captured when described textually. RAG-augmented prompts with retrieved clinical guidelines outperform rule-free prompts on clinical assessment tasks."
+    },
+    {
+      "id": "ghobadi2025_llm_physiological",
+      "paper": "Ghobadi et al. (2025). LLM-Powered Agent for Physiological Data Interpretation. arXiv:2502.12836.",
+      "tags": ["LLM", "agent", "physiological", "RAG", "interpretation"],
+      "text": "LLM-powered agents for physiological signal interpretation benefit from: (1) deterministic pre-processing flags computed from raw features before the LLM call; (2) RAG retrieval of relevant clinical knowledge matching detected signal patterns; (3) chain-of-thought reasoning guided by clinical rules in the prompt; (4) structured JSON output schemas to ensure parseable, auditable responses. Human-in-the-loop review remains essential before clinical use."
+    }
+  ]
+}

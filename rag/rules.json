@@ -1,0 +1,381 @@
+{
+  "metadata": {
+    "version": "1.0",
+    "total_rules": 53,
+    "categories": ["quality", "drift", "fatigue", "activation", "physiological"],
+    "source": "IP (1).pdf - EMG Signal Interpretation Using LLMs"
+  },
+  "rules": [
+    {
+      "id": "Q1", "category": "quality",
+      "title": "Baseline Noise",
+      "rule": "Resting baseline noise RMS below 0.005 mV (5 uV) is good. Above 0.010 mV = POOR QUALITY (bad skin prep or electrode contact).",
+      "flags": ["baseline_noise_high", "poor_electrode_contact"],
+      "source": "SENIAM Guidelines, ISEK Standards"
+    },
+    {
+      "id": "Q2", "category": "quality",
+      "title": "SNR Threshold",
+      "rule": ">15 dB reliable. 10-15 dB MARGINAL. <10 dB UNRELIABLE.",
+      "flags": ["low_snr", "marginal_snr"],
+      "source": "ISEK Standards (Merletti)"
+    },
+    {
+      "id": "Q3", "category": "quality",
+      "title": "Powerline Contamination",
+      "rule": "PowerlineRatio >0.10 = significant PLI. Recommend notch/adaptive cancellation; check grounding.",
+      "flags": ["powerline_detected"],
+      "source": "Chowdhury et al. 2013"
+    },
+    {
+      "id": "Q4", "category": "quality",
+      "title": "Clipping/Saturation",
+      "rule": "ClippingRatio >0.01 or >0.5% samples at extreme percentiles = amplifier saturation. Reduce gain.",
+      "flags": ["clipping_detected"],
+      "source": "Konrad 2005"
+    },
+    {
+      "id": "Q5", "category": "quality",
+      "title": "Spectral Shape",
+      "rule": "Broadband 10-500 Hz expected, peaking 50-150 Hz. Spectral entropy <3.0 bits = single-frequency artifact.",
+      "flags": ["spectral_anomaly"],
+      "source": "Merletti & Parker 2004"
+    },
+    {
+      "id": "Q6", "category": "quality",
+      "title": "Cross-talk",
+      "rule": "Opposite-side sensors correlated >0.8 during unilateral gesture = crosstalk. Review electrode spacing.",
+      "flags": ["crosstalk_detected", "high_interchannel_correlation"],
+      "source": "Chowdhury et al. 2013"
+    },
+    {
+      "id": "Q7", "category": "quality",
+      "title": "Motion Artifact",
+      "rule": "DC offset shift >0.5 mV between segments + low-freq dominance (<5 Hz) = motion artifact. Exclude segments.",
+      "flags": ["motion_artifact"],
+      "source": "De Talhouet & Webster 1996"
+    },
+    {
+      "id": "Q8", "category": "quality",
+      "title": "Dropout/Flatline",
+      "rule": "DropoutPct >0.5% or flatline >200 ms = possible disconnection. Mark segment unusable.",
+      "flags": ["dropout_detected"],
+      "source": "Tankisi et al. 2020"
+    },
+    {
+      "id": "Q9", "category": "quality",
+      "title": "LF Artifact",
+      "rule": "LF_artifact_ratio (1-10 Hz / 20-450 Hz) >0.30 = motion/cable artifact. Check fixation; consider high-pass 20 Hz.",
+      "flags": ["lf_artifact"],
+      "source": "Chowdhury et al. 2013"
+    },
+    {
+      "id": "Q10", "category": "quality",
+      "title": "Anomalous Distribution",
+      "rule": "Kurtosis >10 = spike artifacts. Unusually high ZC/SSC relative to RMS = noise-dominated signal.",
+      "flags": ["high_kurtosis", "noise_dominated"],
+      "source": "Campbell et al. 2022"
+    },
+    {
+      "id": "D1", "category": "drift",
+      "title": "Drift Rate",
+      "rule": "DriftSlope >0.001 mV/s = baseline wander. Mild: 0.001-0.005. Moderate: 0.005-0.01. Severe: >0.01 mV/s.",
+      "flags": ["baseline_drift", "amplitude_drift"],
+      "source": "Bhateja et al. 2019"
+    },
+    {
+      "id": "D2", "category": "drift",
+      "title": "DC Offset Trend",
+      "rule": "Monotonic change >0.05 mV over 5+ consecutive segments = systematic drift.",
+      "flags": ["dc_offset_trend"],
+      "source": "Bhateja et al. 2019"
+    },
+    {
+      "id": "D3", "category": "drift",
+      "title": "Noise Floor Drift",
+      "rule": "BaselineNoiseRMS increase >50% from first to last 5 segments = interface degradation.",
+      "flags": ["noise_floor_increase"],
+      "source": "Sousa et al. 2023"
+    },
+    {
+      "id": "D4", "category": "drift",
+      "title": "Impedance Drift",
+      "rule": "Simultaneous noise increase + SNR decrease = rising impedance. Common after 15-20 min.",
+      "flags": ["impedance_drift"],
+      "source": "Sousa et al. 2023"
+    },
+    {
+      "id": "D5", "category": "drift",
+      "title": "Sudden Shift",
+      "rule": "DCOffset change >0.1 mV between consecutive segments = electrode displacement. Flag for exclusion.",
+      "flags": ["sudden_shift", "electrode_displacement"],
+      "source": "De Talhouet & Webster 1996"
+    },
+    {
+      "id": "D6", "category": "drift",
+      "title": "Perspiration",
+      "rule": "Gradual noise decrease in first 5-10 min is normal (skin hydration). Concern if it then suddenly increases.",
+      "flags": ["perspiration_effect"],
+      "source": "Abdoli-Eramaki et al. 2012"
+    },
+    {
+      "id": "D7", "category": "drift",
+      "title": "Warm-Up Stabilization",
+      "rule": "Electrode-skin impedance changes during first 10-15 min. Use minute 15+ as stable baseline for trend analysis.",
+      "flags": ["warmup_period"],
+      "source": "Sousa et al. 2023"
+    },
+    {
+      "id": "D8", "category": "drift",
+      "title": "Amplitude-Frequency Dissociation",
+      "rule": "RMS change >20% but MDF change <5% = sweat/impedance drift, not fatigue. Fatigue requires concurrent MDF decline.",
+      "flags": ["amplitude_frequency_dissociation"],
+      "source": "Abdoli-Eramaki et al. 2012"
+    },
+    {
+      "id": "D9", "category": "drift",
+      "title": "Step Change Detection",
+      "rule": "CUSUM or change-point on RMS/activation map. Step >3xMAD = electrode displacement or cable tug. Annotate timing.",
+      "flags": ["step_change"],
+      "source": "EMGBench Yang et al. 2024"
+    },
+    {
+      "id": "D10", "category": "drift",
+      "title": "Spatial Reconfiguration",
+      "rule": "Activation map cosine similarity <0.7 for 3+ segments = spatial pattern change. May indicate electrode shift or motor compensation.",
+      "flags": ["spatial_reconfiguration"],
+      "source": "EMGBench Yang et al. 2024"
+    },
+    {
+      "id": "F1", "category": "fatigue",
+      "title": "MDF Decline (Gold Standard)",
+      "rule": "10-20% decline from baseline = moderate fatigue. >20% = severe.",
+      "flags": ["mdf_decline"],
+      "source": "De Luca 1997, Phinyomark et al. 2012"
+    },
+    {
+      "id": "F2", "category": "fatigue",
+      "title": "MNF Parallel",
+      "rule": "MNF should decline with MDF. MNF-only decline may be noise/artifact.",
+      "flags": ["mnf_decline"],
+      "source": "Phinyomark et al. 2012"
+    },
+    {
+      "id": "F3", "category": "fatigue",
+      "title": "RMS Increase",
+      "rule": "Sustained contraction RMS increases 25-50% from motor unit recruitment. RMS up + MDF down = strong fatigue.",
+      "flags": ["rms_increase_fatigue"],
+      "source": "De Luca 1997"
+    },
+    {
+      "id": "F4", "category": "fatigue",
+      "title": "L/H Ratio",
+      "rule": "Increase >30% from baseline = spectral compression consistent with fatigue.",
+      "flags": ["lh_ratio_increase"],
+      "source": "Karthick et al. 2016"
+    },
+    {
+      "id": "F5", "category": "fatigue",
+      "title": "Entropy Decrease",
+      "rule": "SampleEntropy decline >15% = fatigue-related motor unit synchronization.",
+      "flags": ["entropy_decrease"],
+      "source": "Al-Mulla et al. 2011"
+    },
+    {
+      "id": "F6", "category": "fatigue",
+      "title": "ZC Decrease",
+      "rule": ">10% decrease supports fatigue (slowed conduction velocity).",
+      "flags": ["zc_decrease"],
+      "source": "Phinyomark et al. 2012"
+    },
+    {
+      "id": "F7", "category": "fatigue",
+      "title": "Onset Detection",
+      "rule": "Onset = 3+ consecutive MDF-declining segments. Report time in seconds.",
+      "flags": ["mdf_decline"],
+      "source": "Hodges & Bui 1996"
+    },
+    {
+      "id": "F8", "category": "fatigue",
+      "title": "Fatigue Index",
+      "rule": "FI = (MDF_baseline - MDF_final) / MDF_baseline x 100%. Mild: 5-10%. Moderate: 10-20%. Severe: >20%.",
+      "flags": ["mdf_decline"],
+      "source": "ISEK Standards"
+    },
+    {
+      "id": "F9", "category": "fatigue",
+      "title": "Multi-sensor Consistency",
+      "rule": "Multiple sensors fatiguing simultaneously strengthens finding.",
+      "flags": ["multi_sensor_fatigue"],
+      "source": "EMGBench Yang et al. 2024"
+    },
+    {
+      "id": "F10", "category": "fatigue",
+      "title": "Confound Check",
+      "rule": "If SNR drops concurrently, electrode degradation is more likely than fatigue.",
+      "flags": ["snr_drop", "electrode_degradation_vs_fatigue"],
+      "source": "Sousa et al. 2023"
+    },
+    {
+      "id": "F11", "category": "fatigue",
+      "title": "MDF Slope Rate",
+      "rule": "Track Hz/min. Sustained -0.1 to -0.5 Hz/min = fatigue. Outside this range = possible artifact.",
+      "flags": ["mdf_slope"],
+      "source": "Gonzalez-Izal et al. 2012"
+    },
+    {
+      "id": "F12", "category": "fatigue",
+      "title": "Spatial Compensation",
+      "rule": "If concentration index decreases while total RMS is maintained, load is redistributing. Dominant sensor may change mid-session.",
+      "flags": ["spatial_compensation"],
+      "source": "EMGBench Yang et al. 2024"
+    },
+    {
+      "id": "F13", "category": "fatigue",
+      "title": "Prerequisite Gate",
+      "rule": "Before concluding fatigue, confirm: (a) quality GOOD/MARGINAL, (b) drift None/Mild, (c) D8 rule excludes sweat-only amplitude change.",
+      "flags": ["prerequisite_check"],
+      "source": "IP Document"
+    },
+    {
+      "id": "A1", "category": "activation",
+      "title": "Activation Level",
+      "rule": "RMS relative to session mean. Low: <30%. Moderate: 30-70%. High: 70-100%. Very High: >100%.",
+      "flags": ["activation_level"],
+      "source": "Basmajian & De Luca 1985, Konrad 2005"
+    },
+    {
+      "id": "A2", "category": "activation",
+      "title": "Gesture Patterns",
+      "rule": "Flexion = S1-S4 (palmar). Extension = S5-S8. Deviations = placement error or compensation.",
+      "flags": ["gesture_pattern", "sensor_dominance"],
+      "source": "EMGBench Yang et al. 2024"
+    },
+    {
+      "id": "A3", "category": "activation",
+      "title": "Co-contraction",
+      "rule": "Agonist + antagonist RMS both >50% peak simultaneously. Normal for power grip; abnormal for fine motor.",
+      "flags": ["co_contraction"],
+      "source": "Basmajian & De Luca 1985"
+    },
+    {
+      "id": "A4", "category": "activation",
+      "title": "Consistency",
+      "rule": "CV of RMS. <20% consistent. 20-40% moderate. >40% difficulty maintaining gesture.",
+      "flags": ["rms_variability"],
+      "source": "Phinyomark et al. 2012"
+    },
+    {
+      "id": "A5", "category": "activation",
+      "title": "Dominant Sensor",
+      "rule": "Highest average RMS. Report dominant-to-weakest ratio.",
+      "flags": ["sensor_dominance"],
+      "source": "Konrad 2005"
+    },
+    {
+      "id": "A6", "category": "activation",
+      "title": "Temporal Profile",
+      "rule": "Sustained, Ramp-up, Ramp-down, Intermittent, or Compensatory shift.",
+      "flags": ["temporal_profile"],
+      "source": "Basmajian & De Luca 1985"
+    },
+    {
+      "id": "A7", "category": "activation",
+      "title": "Force Estimation",
+      "rule": "RMS has linear-to-quadratic relationship with force. Compare across patients.",
+      "flags": ["force_estimation"],
+      "source": "Vigotsky et al. 2018"
+    },
+    {
+      "id": "A8", "category": "activation",
+      "title": "Motor Unit Recruitment",
+      "rule": "Higher WAMP/ZC = fast-twitch recruitment (increasing effort or fatigue).",
+      "flags": ["motor_unit_recruitment"],
+      "source": "Phinyomark et al. 2012, Nazmi et al. 2016"
+    },
+    {
+      "id": "A9", "category": "activation",
+      "title": "Onset Detection",
+      "rule": "Threshold = baseline mean + k*SD (k in [1,3]) with minimum duration 20-100 ms. Per Hodges & Bui 1996.",
+      "flags": ["onset_detection"],
+      "source": "Hodges & Bui 1996"
+    },
+    {
+      "id": "A10", "category": "activation",
+      "title": "Envelope Smoothing",
+      "rule": "Rectify + low-pass. Use <=25 ms for timing accuracy; up to 250 ms for amplitude trends.",
+      "flags": ["envelope_smoothing"],
+      "source": "ISEK Standards"
+    },
+    {
+      "id": "A11", "category": "activation",
+      "title": "False Onset Guard",
+      "rule": "Require consecutive windows above threshold. Single-window crossings = noise spikes.",
+      "flags": ["onset_detection", "false_onset"],
+      "source": "Hodges & Bui 1996"
+    },
+    {
+      "id": "A12", "category": "activation",
+      "title": "Duty Cycle",
+      "rule": "% time above activation threshold per sensor. Sustained vs intermittent classification.",
+      "flags": ["duty_cycle"],
+      "source": "ISEK Standards"
+    },
+    {
+      "id": "A13", "category": "activation",
+      "title": "Normalization",
+      "rule": "Report as %MVC or %baseline. Without normalization, cross-session/subject comparisons are unreliable.",
+      "flags": ["normalization"],
+      "source": "Vigotsky et al. 2018, ISEK Standards"
+    },
+    {
+      "id": "P1", "category": "physiological",
+      "title": "EMG Range",
+      "rule": "Meaningful 10-500 Hz. <10 Hz = motion artifact. >500 Hz = noise.",
+      "flags": ["always"],
+      "source": "Merletti & Parker 2004"
+    },
+    {
+      "id": "P2", "category": "physiological",
+      "title": "Motor Units",
+      "rule": "100-1000 fibers each. Henneman size principle. Fast-twitch = higher freq EMG.",
+      "flags": ["always"],
+      "source": "Basmajian & De Luca 1985"
+    },
+    {
+      "id": "P3", "category": "physiological",
+      "title": "Conduction Velocity",
+      "rule": "Normal 3-6 m/s. Fatigue reduces it, shifting spectrum lower.",
+      "flags": ["always", "mdf_decline"],
+      "source": "De Luca 1997"
+    },
+    {
+      "id": "P4", "category": "physiological",
+      "title": "Typical Amplitude",
+      "rule": "0-6 mV p-p. Forearm moderate grip: 0.1-1.0 mV RMS. <0.01 mV = not over muscle.",
+      "flags": ["always"],
+      "source": "Konrad 2005"
+    },
+    {
+      "id": "P5", "category": "physiological",
+      "title": "Session Phases",
+      "rule": "0-5 min warmup, 5-10 stable, 10-15 early fatigue, 15-20 pronounced. Impedance stabilizes ~10-15 min.",
+      "flags": ["always"],
+      "source": "IP Document"
+    },
+    {
+      "id": "P6", "category": "physiological",
+      "title": "Inter-Subject Variability",
+      "rule": "3-5x amplitude variation. Within-subject trends far more reliable.",
+      "flags": ["always", "normalization"],
+      "source": "Vigotsky et al. 2018"
+    },
+    {
+      "id": "P7", "category": "physiological",
+      "title": "Amplitude Caution",
+      "rule": "sEMG amplitude cannot infer absolute force, compare between muscles, or determine specific activation in isolation. Valid for relative changes within the same muscle/session/electrode setup.",
+      "flags": ["always", "force_estimation"],
+      "source": "Vigotsky et al. 2018"
+    }
+  ]
+}

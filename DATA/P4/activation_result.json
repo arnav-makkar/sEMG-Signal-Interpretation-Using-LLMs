@@ -1,0 +1,119 @@
+{
+  "overall_activation": "very_high",
+  "dominant_sensors": [
+    "S4",
+    "S8"
+  ],
+  "weakest_sensors": [
+    "S5",
+    "S6"
+  ],
+  "dominant_weakest_ratio": 2.67,
+  "temporal_profile": "Ramp-up",
+  "activation_consistency": "moderate",
+  "per_sensor": [
+    {
+      "sensor": "S1",
+      "activation_level": "high",
+      "temporal_profile": "Sustained",
+      "cv": 0.374,
+      "notable": null
+    },
+    {
+      "sensor": "S2",
+      "activation_level": "high",
+      "temporal_profile": "Sustained",
+      "cv": 0.275,
+      "notable": null
+    },
+    {
+      "sensor": "S3",
+      "activation_level": "very_high",
+      "temporal_profile": "Intermittent",
+      "cv": 0.663,
+      "notable": "High variability in activation"
+    },
+    {
+      "sensor": "S4",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.286,
+      "notable": "Primary dominant sensor"
+    },
+    {
+      "sensor": "S5",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.186,
+      "notable": null
+    },
+    {
+      "sensor": "S6",
+      "activation_level": "moderate",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.381,
+      "notable": null
+    },
+    {
+      "sensor": "S7",
+      "activation_level": "high",
+      "temporal_profile": "Sustained",
+      "cv": 0.217,
+      "notable": null
+    },
+    {
+      "sensor": "S8",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.26,
+      "notable": "High WAMP indicates significant recruitment"
+    }
+  ],
+  "cross_channel": {
+    "concentration_index": 0.1487,
+    "pattern_stability": 0.9926,
+    "inter_channel_corr": 0.2123,
+    "co_contraction_likely": true,
+    "spatial_compensation": false
+  },
+  "onset_assessment": {
+    "first_onset_s": 1.5469,
+    "all_active_by_s": 6.3005,
+    "sequence": [
+      "S8",
+      "S6",
+      "S3",
+      "S4",
+      "S1"
+    ]
+  },
+  "duty_cycle_assessment": {
+    "mean_duty_cycle": 0.8369,
+    "note": "High duty cycle indicates sustained activation across most sensors."
+  },
+  "motor_unit_recruitment_signs": {
+    "detected": true,
+    "sensors_affected": [
+      "S8",
+      "S2",
+      "S4"
+    ],
+    "evidence": "High WAMP values observed: S8 (4875.6), S2 (3035.1), and S4 (2651.3) suggest increased motor unit recruitment consistent with high-effort or fatigue-related compensation."
+  },
+  "gesture_pattern_notes": "Flexor-dominant activation (1.362 ratio). S4 (flexor) and S8 (extensor) show significant ramp-up profiles, suggesting increasing effort over the session duration.",
+  "normalization_note": "Features in absolute mV; cross-subject comparisons unreliable per A13/P6.",
+  "confidence": 0.9,
+  "flags": [
+    "High co-contraction ratio (>0.5)",
+    "Significant ramp-up profile in S4 and S8",
+    "High variability in S3"
+  ],
+  "clinical_notes": "The session exhibits a clear ramp-up activation profile with high co-contraction, suggesting a power-grip or high-effort task. Motor unit recruitment indicators are elevated in S8 and S4. The high inter-channel stability suggests a consistent, albeit fatiguing, neuromuscular strategy.",
+  "_meta": {
+    "participant": "P4",
+    "model": "gemini-3.1-flash-lite-preview",
+    "prompt_tokens": 3775,
+    "completion_tokens": 1051,
+    "parse_success": true
+  }
+}

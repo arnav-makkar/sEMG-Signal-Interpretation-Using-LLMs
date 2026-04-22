@@ -1,0 +1,104 @@
+{
+  "overall_activation": "very_high",
+  "dominant_sensors": [
+    "S3"
+  ],
+  "weakest_sensors": [
+    "S7"
+  ],
+  "dominant_weakest_ratio": 10.09,
+  "temporal_profile": "Sustained",
+  "activation_consistency": "consistent",
+  "per_sensor": [
+    {
+      "sensor": "S1",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.11,
+      "notable": null
+    },
+    {
+      "sensor": "S2",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.169,
+      "notable": null
+    },
+    {
+      "sensor": "S3",
+      "activation_level": "very_high",
+      "temporal_profile": "Sustained",
+      "cv": 0.151,
+      "notable": "Primary driver of gesture"
+    },
+    {
+      "sensor": "S4",
+      "activation_level": "very_high",
+      "temporal_profile": "Sustained",
+      "cv": 0.057,
+      "notable": "Highly consistent"
+    },
+    {
+      "sensor": "S5",
+      "activation_level": "very_high",
+      "temporal_profile": "Sustained",
+      "cv": 0.217,
+      "notable": null
+    },
+    {
+      "sensor": "S6",
+      "activation_level": "very_high",
+      "temporal_profile": "Sustained",
+      "cv": 0.387,
+      "notable": "Moderate consistency"
+    },
+    {
+      "sensor": "S7",
+      "activation_level": "low",
+      "temporal_profile": "Sustained",
+      "cv": 0.212,
+      "notable": null
+    },
+    {
+      "sensor": "S8",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.284,
+      "notable": null
+    }
+  ],
+  "cross_channel": {
+    "concentration_index": 0.2247,
+    "pattern_stability": 0.9957,
+    "inter_channel_corr": 0.0125,
+    "co_contraction_likely": true,
+    "spatial_compensation": false
+  },
+  "onset_assessment": null,
+  "duty_cycle_assessment": null,
+  "motor_unit_recruitment_signs": {
+    "detected": true,
+    "sensors_affected": [
+      "S3",
+      "S5",
+      "S6"
+    ],
+    "evidence": "High WAMP values observed in S3 (7978.8), S5 (4332.8), and S6 (3238.5) indicate significant motor unit recruitment during sustained contraction."
+  },
+  "gesture_pattern_notes": "Flexor group (S1-S4) shows higher overall excitation compared to extensor group (S5-S8), with a flexor-extensor balance ratio of 1.8871.",
+  "normalization_note": "Features in absolute mV; cross-subject comparisons unreliable per A13/P6.",
+  "confidence": 0.9,
+  "flags": [
+    "High co-contraction ratio",
+    "Very high activation in S3",
+    "Flexor-dominant activation pattern"
+  ],
+  "clinical_notes": "The session demonstrates a stable, sustained contraction with clear flexor dominance (S3). High WAMP values across multiple sensors suggest significant motor unit recruitment. Co-contraction ratio (0.5793) exceeds the 0.5 threshold, indicating simultaneous agonist/antagonist activity consistent with a power grip.",
+  "_meta": {
+    "participant": "P5",
+    "model": "gemini-3.1-flash-lite-preview",
+    "prompt_tokens": 3645,
+    "completion_tokens": 827,
+    "parse_success": true
+  }
+}

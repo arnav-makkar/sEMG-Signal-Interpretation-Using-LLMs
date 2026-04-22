@@ -1,0 +1,10 @@
+participant,feature_source,overall_activation,temporal_profile,consistency,dominant_sensors,dominant_weakest_ratio,concentration_index,pattern_stability,co_contraction_ratio,flexor_extensor_balance,confidence,parse_success
+P1,raw_signal,high,Ramp-down,consistent,['S4'],7.27,0.2006,0.9983,0.3691,2.7329,0.95,True
+P2,raw_signal,very_high,Sustained,consistent,['S2'],8.03,0.1846,0.9979,0.2324,4.319,0.95,True
+P3,raw_signal,high,Ramp-up,consistent,['S4'],5.66,0.1851,0.9942,0.4613,2.2287,0.95,True
+P4,raw_signal,very_high,Ramp-up,moderate,"['S4', 'S8']",2.67,0.1487,0.9926,0.7465,1.362,0.9,True
+P5,raw_signal,very_high,Sustained,consistent,['S3'],10.09,0.2247,0.9957,0.5793,1.8871,0.9,True
+P6,raw_signal,very_high,Sustained,consistent,['S4'],4.83,0.1624,0.996,0.8549,1.0187,0.95,True
+P7,raw_signal,very_high,Sustained,consistent,['S3'],2.81,0.1461,0.9909,0.5376,1.9005,0.9,True
+P8,raw_signal,very_high,Ramp-up,consistent,['S3'],7.79,0.1944,0.9982,0.4439,2.2765,0.95,True
+P9,raw_signal,very_high,Sustained,consistent,['S2'],5.16,0.1607,0.9936,0.5529,1.9757,0.95,True

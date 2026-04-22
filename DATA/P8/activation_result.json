@@ -1,0 +1,103 @@
+{
+  "overall_activation": "very_high",
+  "dominant_sensors": [
+    "S3"
+  ],
+  "weakest_sensors": [
+    "S8"
+  ],
+  "dominant_weakest_ratio": 7.79,
+  "temporal_profile": "Ramp-up",
+  "activation_consistency": "consistent",
+  "per_sensor": [
+    {
+      "sensor": "S1",
+      "activation_level": "moderate",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.097,
+      "notable": null
+    },
+    {
+      "sensor": "S2",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.115,
+      "notable": null
+    },
+    {
+      "sensor": "S3",
+      "activation_level": "very_high",
+      "temporal_profile": "Sustained",
+      "cv": 0.101,
+      "notable": "Primary driver of activation"
+    },
+    {
+      "sensor": "S4",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.145,
+      "notable": null
+    },
+    {
+      "sensor": "S5",
+      "activation_level": "very_high",
+      "temporal_profile": "Ramp-up",
+      "cv": 0.206,
+      "notable": "Higher variability observed"
+    },
+    {
+      "sensor": "S6",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.102,
+      "notable": null
+    },
+    {
+      "sensor": "S7",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.115,
+      "notable": null
+    },
+    {
+      "sensor": "S8",
+      "activation_level": "moderate",
+      "temporal_profile": "Sustained",
+      "cv": 0.07,
+      "notable": null
+    }
+  ],
+  "cross_channel": {
+    "concentration_index": 0.1944,
+    "pattern_stability": 0.9982,
+    "inter_channel_corr": 0.2949,
+    "co_contraction_likely": false,
+    "spatial_compensation": false
+  },
+  "onset_assessment": null,
+  "duty_cycle_assessment": null,
+  "motor_unit_recruitment_signs": {
+    "detected": true,
+    "sensors_affected": [
+      "S3",
+      "S4",
+      "S2"
+    ],
+    "evidence": "High WAMP values observed in S3 (6325.3), S4 (2814.5), and S2 (2168.6) indicate significant motor unit recruitment consistent with high-effort sustained contraction."
+  },
+  "gesture_pattern_notes": "Flexor group (S1-S4) shows significantly higher activation (Very High) compared to extensor group (S5-S8), with a flexor-extensor balance ratio of 2.2765.",
+  "normalization_note": "Features in absolute mV; cross-subject comparisons unreliable per A13/P6.",
+  "confidence": 0.95,
+  "flags": [
+    "High flexor-extensor imbalance",
+    "Very high activation levels in S2-S5"
+  ],
+  "clinical_notes": "The session demonstrates a stable, sustained contraction with a clear flexor-dominant pattern. High WAMP values in the flexor group (S2-S4) suggest robust motor unit recruitment. The low inter-channel correlation (0.2949) indicates minimal crosstalk risk.",
+  "_meta": {
+    "participant": "P8",
+    "model": "gemini-3.1-flash-lite-preview",
+    "prompt_tokens": 3651,
+    "completion_tokens": 938,
+    "parse_success": true
+  }
+}

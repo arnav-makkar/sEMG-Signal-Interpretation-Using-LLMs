@@ -1,7 +1,27 @@
-.venv/
-hypothesis/
-DATA/*/*_filtered.csv
-DATA/*/Gesture_*.csv
+# Secrets
 .env
-todo.md
-ANALYSIS_AND_IMPROVEMENT_PLAN.md
+.env.*
+!.env.example
+
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.ipynb_checkpoints/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Raw EMG data (large, regenerated from source)
+DATA/*/Gesture_1.csv
+DATA/*/Gesture_*_filtered.csv
+
+# RAG vectorstore (rebuilt from PDFs in Activation/ via rag/build_index.py)
+rag/vectorstore/
+
+# IDE
+.vscode/
+.idea/
