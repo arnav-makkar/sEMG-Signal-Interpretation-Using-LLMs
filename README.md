@@ -1,13 +1,19 @@
 # sEMG Signal Interpretation Using LLMs
 
+Independent Project, Winter '26.
+
 Clinical interpretation of surface electromyography (sEMG) recordings using a
 retrieval-augmented LLM pipeline. The system ingests raw 8-sensor forearm EMG,
 extracts time- and frequency-domain features per 20-second window, grounds the
 LLM with clinical rules and research-paper context, and produces a structured
 muscle-activation assessment plus a physician-facing PDF report.
 
-Independent Project — Winter '26.
 
+**Sample output:** [P1 clinical report (PDF)](results/reports/P1_activation_report.pdf)
+
+![](screenshots/1.png)
+![](screenshots/2.png)
+![](screenshots/3.png)
 ---
 
 ## 1. What this project does
